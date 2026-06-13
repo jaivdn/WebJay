@@ -19,6 +19,8 @@ menuBtn.addEventListener("click", () => {
 
 });
 
+
+
 // SMOOTH SCROLL
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

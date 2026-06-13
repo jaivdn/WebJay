@@ -957,3 +957,38 @@ object-fit:cover;
 }
 
 }
+
+@media(max-width:768px){
+
+.nav-links{
+position:fixed;
+top:75px;
+left:0;
+width:100%;
+background:#0d1328;
+display:none;
+flex-direction:column;
+align-items:center;
+padding:25px 0;
+gap:20px;
+z-index:9999;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.nav-links.active{
+display:flex !important;
+}
+
+.nav-links li{
+width:100%;
+text-align:center;
+}
+
+.nav-links a{
+display:block;
+padding:12px;
+font-size:18px;
+color:white;
+}
+
+}
