@@ -1,24 +1,22 @@
+/* =========================
+   WEBJAY PREMIUM CSS
+========================= */
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
 scroll-behavior:smooth;
 }
 
-:root{
---bg:#050816;
---card:#0d1328;
---blue:#00aaff;
---light:#ffffff;
---text:#b8c4d6;
-}
-
 body{
-background:var(--bg);
-color:var(--light);
+font-family:'Poppins',sans-serif;
+background:#050816;
+color:#fff;
 overflow-x:hidden;
 }
+
+/* HEADER */
 
 .header{
 position:fixed;
@@ -27,7 +25,7 @@ left:0;
 width:100%;
 z-index:1000;
 backdrop-filter:blur(15px);
-background:rgba(0,0,0,0.35);
+background:rgba(5,8,22,.7);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -40,37 +38,38 @@ justify-content:space-between;
 align-items:center;
 }
 
-.logo{
-font-size:30px;
-font-weight:800;
+.logo img{
+height:55px;
+filter:drop-shadow(0 0 20px #00aaff);
 }
-
 .logo span{
 color:var(--blue);
 }
 
 .nav-links{
 display:flex;
-list-style:none;
 gap:30px;
+list-style:none;
 }
 
 .nav-links a{
 text-decoration:none;
-color:white;
+color:#fff;
 font-weight:500;
 transition:.3s;
 }
 
 .nav-links a:hover{
-color:var(--blue);
+color:#00aaff;
 }
 
 .menu-btn{
 display:none;
-font-size:26px;
+font-size:28px;
 cursor:pointer;
 }
+
+/* HERO */
 
 .hero{
 min-height:100vh;
@@ -78,301 +77,269 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:120px 20px 50px;
-background:
-radial-gradient(circle at top,
-rgba(0,170,255,.25),
-transparent 40%);
+padding:120px 20px;
+position:relative;
+overflow:hidden;
+}
+
+.hero-bg{
+position:absolute;
+width:600px;
+height:600px;
+background:#00aaff;
+filter:blur(180px);
+opacity:.25;
+border-radius:50%;
 }
 
 .hero-content{
+position:relative;
+z-index:2;
 max-width:900px;
+}
+
+.hero-logo{
+width:120px;
+margin-bottom:25px;
+animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{
+50%{
+transform:translateY(-12px);
+}
 }
 
 .hero h1{
 font-size:4rem;
-line-height:1.2;
+line-height:1.1;
 margin-bottom:20px;
 }
 
+.hero span{
+color:#00aaff;
+}
+
 .hero p{
-font-size:1.1rem;
-color:var(--text);
-margin-bottom:35px;
+font-size:1.15rem;
+color:#c8d1e0;
+margin-bottom:30px;
 }
 
 .hero-buttons{
 display:flex;
 justify-content:center;
-gap:20px;
+gap:15px;
 flex-wrap:wrap;
 }
 
-.btn-primary,
+.cta-btn,
 .btn-secondary{
-padding:14px 28px;
-border-radius:12px;
+padding:14px 30px;
+border-radius:50px;
 text-decoration:none;
 font-weight:600;
-transition:.3s;
+transition:.4s;
 }
 
-.btn-primary{
-background:var(--blue);
-color:white;
+.cta-btn{
+background:#00aaff;
+color:#fff;
+box-shadow:0 0 25px #00aaff;
 }
 
-.btn-primary:hover{
-transform:translateY(-3px);
-box-shadow:0 0 25px var(--blue);
+.cta-btn:hover{
+transform:translateY(-4px);
 }
 
 .btn-secondary{
-border:1px solid var(--blue);
-color:white;
+border:2px solid #00aaff;
+color:#00aaff;
 }
 
 .btn-secondary:hover{
-background:var(--blue);
+background:#00aaff;
+color:#fff;
 }
 
-.stats{
-max-width:1200px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-padding:80px 20px;
-}
-
-.stat-box{
-background:var(--card);
-padding:35px;
-border-radius:20px;
-text-align:center;
-border:1px solid rgba(255,255,255,.05);
-}
-
-.stat-box h2{
-font-size:2.2rem;
-color:var(--blue);
-margin-bottom:10px;
-}
+/* SECTION TITLE */
 
 .section-title{
+font-size:2.5rem;
 text-align:center;
-font-size:2.8rem;
 margin-bottom:50px;
 }
 
-.services,
-.pricing,
-.portfolio,
-.contact{
-padding:100px 20px;
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+padding:80px 10%;
 }
 
-.service-grid,
-.pricing-grid,
-.portfolio-grid{
-max-width:1200px;
-margin:auto;
+.stat-box{
+background:#0d1328;
+padding:30px;
+text-align:center;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.stat-box h2{
+font-size:2.5rem;
+color:#00aaff;
+}
+
+/* SERVICES */
+
+.services{
+padding:100px 10%;
+}
+
+.service-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.service-card{
+background:#0d1328;
+padding:35px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.service-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(0,170,255,.3);
+}
+
+.service-card i{
+font-size:40px;
+margin-bottom:15px;
+color:#00aaff;
+}
+
+/* WHY */
+
+.why{
+padding:100px 10%;
+}
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#0d1328;
+padding:30px;
+border-radius:18px;
+text-align:center;
+font-weight:600;
+}
+
+/* PROCESS */
+
+.process{
+padding:100px 10%;
+}
+
+.process-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.step{
+background:#00aaff;
+padding:25px;
+border-radius:16px;
+text-align:center;
+font-weight:700;
+}
+
+/* PRICING */
+
+.pricing{
+padding:100px 10%;
+}
+
+.pricing-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 }
 
-.service-card,
-.project-card,
 .price-card{
-background:var(--card);
-padding:35px;
+background:#0d1328;
+padding:40px;
 border-radius:20px;
-transition:.4s;
-border:1px solid rgba(255,255,255,.05);
-}
-
-.service-card:hover,
-.project-card:hover,
-.price-card:hover{
-transform:translateY(-10px);
-}
-
-.service-card i{
-font-size:40px;
-color:var(--blue);
-margin-bottom:20px;
-}
-
-.service-card h3{
-margin-bottom:15px;
-}
-
-.service-card p{
-color:var(--text);
-}
-
-.price-card{
+text-align:center;
 position:relative;
-}
-
-.featured{
-border:2px solid var(--blue);
-}
-
-.badge{
-position:absolute;
-top:-12px;
-right:20px;
-background:var(--blue);
-padding:8px 14px;
-border-radius:50px;
-font-size:12px;
-font-weight:600;
-}
-
-.price{
-font-size:3rem;
-font-weight:800;
-margin:20px 0;
-color:var(--blue);
 }
 
 .price-card ul{
 list-style:none;
-margin-bottom:25px;
+margin:25px 0;
 }
 
-.price-card ul li{
-padding:10px 0;
-border-bottom:1px solid rgba(255,255,255,.06);
+.price-card li{
+margin:12px 0;
+}
+
+.price{
+font-size:2.5rem;
+color:#00aaff;
+margin-top:10px;
+}
+
+.featured{
+border:2px solid #00aaff;
+transform:scale(1.05);
+}
+
+.badge{
+position:absolute;
+top:-15px;
+left:50%;
+transform:translateX(-50%);
+background:#00aaff;
+padding:8px 15px;
+border-radius:30px;
+font-size:.8rem;
 }
 
 .plan-btn{
 display:inline-block;
-background:var(--blue);
-color:white;
-padding:12px 22px;
-border-radius:10px;
+margin-top:15px;
+padding:12px 25px;
+background:#00aaff;
+color:#fff;
 text-decoration:none;
-font-weight:600;
+border-radius:40px;
 }
 
-.project-card h3{
-margin-bottom:12px;
+/* PORTFOLIO */
+
+.portfolio{
+padding:100px 10%;
 }
 
-.project-card p{
-color:var(--text);
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 
-.contact form{
-max-width:700px;
-margin:auto;
-display:flex;
-flex-direction:column;
-gap:18px;
-}
-
-.contact input,
-.contact textarea,
-.contact select{
-padding:16px;
-border:none;
-outline:none;
-border-radius:12px;
-background:var(--card);
-color:white;
-}
-
-.contact textarea{
-height:180px;
-resize:none;
-}
-
-.contact button{
-padding:16px;
-background:var(--blue);
-color:white;
-border:none;
-border-radius:12px;
-cursor:pointer;
-font-size:16px;
-font-weight:600;
-}
-
-footer{
-padding:40px 20px;
-text-align:center;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-footer h2{
-margin-bottom:15px;
-}
-
-footer p{
-margin:8px 0;
-color:var(--text);
-}
-
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-width:60px;
-height:60px;
-background:#25D366;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:50%;
-color:white;
-font-size:28px;
-text-decoration:none;
-z-index:1000;
-box-shadow:0 0 20px rgba(37,211,102,.5);
-}
-
-@media(max-width:768px){
-
-.menu-btn{
-display:block;
-}
-
-.nav-links{
-position:absolute;
-top:80px;
-left:-100%;
-width:100%;
-background:#071020;
-flex-direction:column;
-text-align:center;
-padding:30px 0;
-transition:.4s;
-}
-
-.nav-links.active{
-left:0;
-}
-
-.hero h1{
-font-size:2.4rem;
-}
-
-.hero p{
-font-size:1rem;
-}
-
-.stats{
-grid-template-columns:1fr;
-}
-
-.section-title{
-font-size:2rem;
-}
-}
 .project-card{
+background:#0d1328;
+border-radius:20px;
 overflow:hidden;
 }
 
@@ -380,11 +347,401 @@ overflow:hidden;
 width:100%;
 height:220px;
 object-fit:cover;
-border-radius:15px;
+}
+
+.project-card h3,
+.project-card p{
+padding:15px;
+}
+
+/* TESTIMONIAL */
+
+.testimonials{
+padding:100px 10%;
+}
+
+.testimonial-card{
+background:#0d1328;
+padding:40px;
+border-radius:20px;
+max-width:700px;
+margin:auto;
+text-align:center;
+}
+
+/* FAQ */
+
+.faq{
+padding:100px 10%;
+}
+
+.faq-item{
+background:#0d1328;
+padding:25px;
 margin-bottom:15px;
-transition:.4s;
+border-radius:15px;
+}
+
+/* CONTACT */
+
+.contact{
+padding:100px 10%;
+}
+
+form{
+max-width:700px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input,
+select,
+textarea{
+padding:15px;
+border:none;
+border-radius:12px;
+background:#0d1328;
+color:#fff;
+}
+
+textarea{
+height:150px;
+resize:none;
+}
+
+button{
+padding:15px;
+border:none;
+border-radius:12px;
+background:#00aaff;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+padding:60px 20px;
+text-align:center;
+background:#03050d;
+}
+
+.footer-logo{
+width:80px;
+margin-bottom:15px;
+}
+
+.footer p{
+margin:10px 0;
+color:#c8d1e0;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:#fff;
+text-decoration:none;
+box-shadow:0 0 25px #25D366;
+z-index:999;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.4rem;
+}
+
+.nav-links{
+display:none;
+}
+
+.menu-btn{
+display:block;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.hero-buttons{
+flex-direction:column;
+align-items:center;
+}
+
+.featured{
+transform:none;
+}
+
+.section-title{
+font-size:2rem;
+}
+
+}
+
+.hero-logo{
+width:140px;
+height:140px;
+border-radius:50%;
+padding:10px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:2px solid rgba(0,170,255,.4);
+box-shadow:
+0 0 25px #00aaff,
+0 0 60px rgba(0,170,255,.4);
+animation:float 4s ease-in-out infinite;
+}
+
+.icon-ripple{
+position:relative;
+overflow:hidden;
+}
+
+.icon-ripple::after{
+content:"";
+position:absolute;
+width:10px;
+height:10px;
+background:#00aaff;
+border-radius:50%;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+animation:ripple .6s ease;
+}
+
+@keyframes ripple{
+
+0%{
+width:10px;
+height:10px;
+opacity:1;
+}
+
+100%{
+width:80px;
+height:80px;
+opacity:0;
+}
+
+}
+
+.service-card i,
+.social-icons i,
+.footer-links i{
+cursor:pointer;
+transition:.3s ease;
+}
+
+/* Hover */
+
+.service-card i:hover,
+.social-icons i:hover,
+.footer-links i:hover{
+transform:translateY(-8px) scale(1.15);
+color:#00aaff;
+filter:drop-shadow(0 0 15px #00aaff);
+}
+
+/* Click Animation */
+
+.icon-click{
+animation:iconPop .4s ease;
+}
+
+@keyframes iconPop{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.4) rotate(10deg);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* =========================
+   PREMIUM CLICK EFFECTS
+========================= */
+
+a,
+button,
+.plan-btn,
+.cta-btn,
+.btn-secondary,
+.service-card,
+.price-card,
+.project-card,
+.card,
+.step,
+.faq-item,
+.whatsapp,
+.logo img{
+
+cursor:pointer;
+transition:all .3s ease;
+
+}
+
+/* Hover Lift */
+
+a:hover,
+button:hover,
+.plan-btn:hover,
+.cta-btn:hover,
+.btn-secondary:hover,
+.service-card:hover,
+.price-card:hover,
+.project-card:hover,
+.card:hover,
+.step:hover{
+
+transform:translateY(-8px);
+}
+
+/* Glow Effect */
+
+.plan-btn:hover,
+.cta-btn:hover,
+.btn-secondary:hover,
+button:hover{
+
+box-shadow:
+0 0 20px #00aaff,
+0 0 40px #00aaff;
+}
+
+/* Card Glow */
+
+.service-card:hover,
+.price-card:hover,
+.project-card:hover,
+.card:hover,
+.step:hover{
+
+box-shadow:
+0 0 30px rgba(0,170,255,.4);
+border-color:#00aaff;
+}
+
+/* Click Animation */
+
+.click-pop{
+animation:clickPop .35s ease;
+}
+
+@keyframes clickPop{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(.9);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* WhatsApp Bounce */
+
+.whatsapp:hover{
+
+animation:bounce .8s infinite;
+
+}
+
+@keyframes bounce{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+}
+
+/* Logo Rotate */
+
+.logo img:hover{
+
+transform:rotate(10deg) scale(1.08);
+
+}
+
+/* Portfolio Zoom */
+
+.project-card img{
+
+transition:.5s;
+
 }
 
 .project-card:hover img{
+
 transform:scale(1.08);
+
+}
+
+/* Pricing Card Premium */
+
+.featured:hover{
+
+transform:scale(1.08);
+box-shadow:
+0 0 40px #00aaff;
+
+}
+
+/* Navbar Link Underline */
+
+.nav-links a{
+
+position:relative;
+
+}
+
+.nav-links a::after{
+
+content:'';
+position:absolute;
+left:0;
+bottom:-5px;
+width:0;
+height:2px;
+background:#00aaff;
+transition:.3s;
+
+}
+
+.nav-links a:hover::after{
+
+width:100%;
+
 }
