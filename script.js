@@ -44,3 +44,26 @@ window.addEventListener("load", () => {
     document.body.classList.add("loaded");
 });
 
+const counters = document.querySelectorAll('.stat-box h2');
+
+counters.forEach(counter => {
+
+let count = 0;
+const target = parseInt(counter.innerText);
+
+const update = () => {
+
+if(count < target){
+
+count++;
+counter.innerText = count + '+';
+
+setTimeout(update,50);
+
+}
+
+}
+
+update();
+
+});
