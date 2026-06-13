@@ -463,17 +463,43 @@ z-index:999;
 
 @media(max-width:768px){
 
-.hero h1{
-font-size:2.4rem;
+.menu-btn{
+display:block;
+font-size:28px;
+color:white;
+cursor:pointer;
 }
 
 .nav-links{
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+background:#0d1328;
 display:none;
+flex-direction:column;
+padding:20px 0;
+text-align:center;
+gap:20px;
+z-index:999;
+border-top:1px solid rgba(255,255,255,.1);
 }
 
-.menu-btn{
-display:block;
+.nav-links.active{
+display:flex;
 }
+
+.nav-links li{
+list-style:none;
+}
+
+.nav-links a{
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+
 
 .stats{
 grid-template-columns:1fr;
