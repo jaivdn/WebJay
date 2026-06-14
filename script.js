@@ -1,111 +1,41 @@
-// ========================
-// WEBJAY PREMIUM JS
-// ========================
-
 // MOBILE MENU
 
 const menuBtn = document.querySelector(".menu-btn");
 const navLinks = document.querySelector(".nav-links");
+const menuIcon = document.querySelector(".menu-btn i");
 
 menuBtn.addEventListener("click", () => {
 
     navLinks.classList.toggle("active");
 
     if(navLinks.classList.contains("active")){
-        menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+        menuIcon.classList.remove("fa-bars");
+        menuIcon.classList.add("fa-times");
     }else{
-        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
     }
 
 });
 
+// CLOSE MENU AFTER CLICK
 
+document.querySelectorAll(".nav-links a").forEach(link => {
 
-// SMOOTH SCROLL
+    link.addEventListener("click", () => {
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        navLinks.classList.remove("active");
 
-    anchor.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute("href"))
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
 
     });
 
 });
 
-// COUNTER ANIMATION
+// SCROLL REVEAL
 
-const counters = document.querySelectorAll(".stat-box h2");
-
-const startCounter = () => {
-
-    counters.forEach(counter => {
-
-        const text = counter.innerText;
-
-        let target = parseInt(text);
-
-        let count = 0;
-
-        const update = () => {
-
-            if(count < target){
-
-                count++;
-
-                if(text.includes("%")){
-                    counter.innerText = count + "%";
-                }
-                else if(text.includes("+")){
-                    counter.innerText = count + "+";
-                }
-                else{
-                    counter.innerText = count;
-                }
-
-                setTimeout(update,20);
-            }
-
-        };
-
-        update();
-
-    });
-
-};
-
-const statsSection = document.querySelector(".stats");
-
-const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
-            startCounter();
-
-            observer.unobserve(statsSection);
-
-        }
-
-    });
-
-});
-
-observer.observe(statsSection);
-
-// SCROLL REVEAL ANIMATION
-
-const revealElements = document.querySelectorAll(
-".service-card, .price-card, .project-card, .card, .step, .testimonial-card, .faq-item"
-);
-
-const revealObserver = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver((entries) => {
 
     entries.forEach(entry => {
 
@@ -121,11 +51,30 @@ const revealObserver = new IntersectionObserver(entries => {
     threshold:0.15
 });
 
-revealElements.forEach(el => {
+document.querySelectorAll(
+".service-card,.project-card,.price-card,.section-title,.hero-content,.hero-image"
+).forEach(el => {
 
     el.classList.add("hidden");
+    observer.observe(el);
 
-    revealObserver.observe(el);
+});
+
+// CLICK POP EFFECT
+
+document.querySelectorAll(
+"a,button,.service-card,.project-card,.price-card"
+).forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        item.classList.add("click-pop");
+
+        setTimeout(() => {
+            item.classList.remove("click-pop");
+        },300);
+
+    });
 
 });
 
@@ -138,7 +87,7 @@ window.addEventListener("scroll", () => {
     if(window.scrollY > 50){
 
         header.style.boxShadow =
-        "0 10px 30px rgba(0,170,255,.15)";
+        "0 10px 30px rgba(0,0,0,.4)";
 
     }else{
 
@@ -148,116 +97,29 @@ window.addEventListener("scroll", () => {
 
 });
 
-// PORTFOLIO IMAGE CLICK ZOOM
+window.addEventListener("scroll",()=>{
 
-document.querySelectorAll(".project-card img")
-.forEach(img => {
+const winScroll =
+document.documentElement.scrollTop;
 
-    img.addEventListener("click", () => {
+const height =
+document.documentElement.scrollHeight -
+document.documentElement.clientHeight;
 
-        const overlay = document.createElement("div");
+const scrolled =
+(winScroll/height)*100;
 
-        overlay.style.position = "fixed";
-        overlay.style.top = "0";
-        overlay.style.left = "0";
-        overlay.style.width = "100%";
-        overlay.style.height = "100%";
-        overlay.style.background = "rgba(0,0,0,.9)";
-        overlay.style.display = "flex";
-        overlay.style.alignItems = "center";
-        overlay.style.justifyContent = "center";
-        overlay.style.zIndex = "9999";
-
-        const image = document.createElement("img");
-
-        image.src = img.src;
-        image.style.maxWidth = "90%";
-        image.style.maxHeight = "90%";
-        image.style.borderRadius = "20px";
-
-        overlay.appendChild(image);
-
-        document.body.appendChild(overlay);
-
-        overlay.addEventListener("click", () => {
-
-            overlay.remove();
-
-        });
-
-    });
+document.getElementById("progressBar")
+.style.width = scrolled + "%";
 
 });
 
-console.log("🚀 WebJay Premium Website Loaded");
+const glow =
+document.querySelector(".cursor-glow");
 
-icons.forEach(icon => {
+document.addEventListener("mousemove",(e)=>{
 
-icon.addEventListener('click', () => {
-
-icon.classList.add('icon-ripple');
-
-setTimeout(() => {
-
-icon.classList.remove('icon-ripple');
-
-},600);
-
-});
-
-});
-
-const icons = document.querySelectorAll(
-'.service-card i, .social-icons i, .footer-links i'
-);
-
-icons.forEach(icon => {
-
-icon.addEventListener('click', () => {
-
-icon.classList.add('icon-click');
-
-setTimeout(() => {
-
-icon.classList.remove('icon-click');
-
-},400);
-
-});
-
-});
-
-
-
-// PREMIUM CLICK EFFECT
-
-const clickableItems = document.querySelectorAll(`
-a,
-button,
-.plan-btn,
-.cta-btn,
-.btn-secondary,
-.service-card,
-.price-card,
-.project-card,
-.card,
-.step,
-.whatsapp,
-.logo img
-`);
-
-clickableItems.forEach(item => {
-
-item.addEventListener("click", () => {
-
-item.classList.add("click-pop");
-
-setTimeout(() => {
-
-item.classList.remove("click-pop");
-
-},350);
-
-});
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
 
 });
