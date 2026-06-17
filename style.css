@@ -913,3 +913,53 @@ transform:translateY(-10px);
 
 }
 
+.contact input,
+.contact select,
+.contact textarea{
+background:#09142d;
+border:1px solid rgba(0,170,255,.25);
+color:white;
+border-radius:12px;
+padding:18px;
+}
+
+.contact input:focus,
+.contact textarea:focus,
+.contact select:focus{
+border-color:#00aaff;
+box-shadow:0 0 20px rgba(0,170,255,.3);
+outline:none;
+}
+
+.project-card{
+transition:.4s ease;
+}
+
+.project-card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 35px rgba(0,170,255,.35);
+}
+
+.hero::after{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(
+circle,
+rgba(0,170,255,.15),
+transparent 70%
+);
+right:10%;
+top:20%;
+animation:floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-20px);
+}
+}
