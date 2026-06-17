@@ -12,6 +12,8 @@
 content="WebJay creates premium websites for businesses, startups, creators and professionals.">
 
 <link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -262,7 +264,8 @@ Our Services
 Why Choose WebJay?
 </h2>
 
-<div class="why-grid">
+<div class="why-grid"
+<div class="why-grid" data-aos="fade-up">
 
 <div class="card">⚡ Fast Delivery</div>
 <div class="card">📱 Mobile Friendly</div>
@@ -551,6 +554,16 @@ class="whatsapp">
 <script src="script.js"></script>
 <div id="progressBar"></div>
 <div class="cursor-glow"></div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+
+<script>
+AOS.init({
+duration:800,
+once:true
+});
+</script>
 
 </body>
 </html>
