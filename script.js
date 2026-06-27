@@ -1,125 +1,233 @@
-// MOBILE MENU
+/*=========================================================
+                    WEBJAY 2.0
+=========================================================*/
 
-const menuBtn = document.querySelector(".menu-btn");
-const navLinks = document.querySelector(".nav-links");
-const menuIcon = document.querySelector(".menu-btn i");
+document.addEventListener("DOMContentLoaded", () => {
 
-menuBtn.addEventListener("click", () => {
+    /*====================================
+            LOADER
+    ====================================*/
 
-    navLinks.classList.toggle("active");
+    const loader = document.querySelector(".loader");
 
-    if(navLinks.classList.contains("active")){
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-times");
-    }else{
-        menuIcon.classList.remove("fa-times");
-        menuIcon.classList.add("fa-bars");
-    }
+    window.addEventListener("load", () => {
 
-});
+        setTimeout(() => {
 
-// CLOSE MENU AFTER CLICK
+            loader.classList.add("hide");
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+        },1200);
 
-    link.addEventListener("click", () => {
+    });
 
-        navLinks.classList.remove("active");
+    /*====================================
+            STICKY NAVBAR
+    ====================================*/
 
-        menuIcon.classList.remove("fa-times");
-        menuIcon.classList.add("fa-bars");
+    const header = document.querySelector(".header");
+
+    window.addEventListener("scroll",()=>{
+
+        if(window.scrollY > 80){
+
+            header.classList.add("scrolled");
+
+        }
+
+        else{
+
+            header.classList.remove("scrolled");
+
+        }
+
+    });
+
+    /*====================================
+            MOBILE MENU
+    ====================================*/
+
+    const menuBtn = document.querySelector(".menu-btn");
+
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    menuBtn.addEventListener("click",()=>{
+
+        mobileMenu.classList.toggle("active");
+
+        menuBtn.classList.toggle("active");
+
+    });
+
+    /*====================================
+            CLOSE MENU
+    ====================================*/
+
+    document.querySelectorAll(".mobile-menu a")
+
+    .forEach(link=>{
+
+        link.addEventListener("click",()=>{
+
+            mobileMenu.classList.remove("active");
+
+            menuBtn.classList.remove("active");
+
+        });
+
+    });
+
+    /*====================================
+            SCROLL BAR
+    ====================================*/
+
+    const progress = document.querySelector(".progress-fill");
+
+    window.addEventListener("scroll",()=>{
+
+        const total =
+
+        document.documentElement.scrollHeight
+
+        - window.innerHeight;
+
+        const value =
+
+        (window.pageYOffset/total)*100;
+
+        progress.style.width=value+"%";
 
     });
 
 });
 
-// SCROLL REVEAL
+/*=========================================================
+            SCROLL REVEAL ANIMATION
+=========================================================*/
 
-const observer = new IntersectionObserver((entries) => {
+const revealElements=document.querySelectorAll(
 
-    entries.forEach(entry => {
+".service-card,.why-card,.project-card,.price-card,.testimonial-card,.about-card,.timeline-item,.result-card,.stat-card,.trusted-item"
+
+);
+
+const revealObserver=new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
 
         if(entry.isIntersecting){
 
-            entry.target.classList.add("show");
+            entry.target.style.opacity="1";
+
+            entry.target.style.transform="translateY(0)";
 
         }
 
     });
 
 },{
-    threshold:0.15
-});
 
-document.querySelectorAll(
-".service-card,.project-card,.price-card,.section-title,.hero-content,.hero-image"
-).forEach(el => {
-
-    el.classList.add("hidden");
-    observer.observe(el);
+    threshold:.15
 
 });
 
-// CLICK POP EFFECT
+revealElements.forEach(item=>{
 
-document.querySelectorAll(
-"a,button,.service-card,.project-card,.price-card"
-).forEach(item => {
+    item.style.opacity="0";
 
-    item.addEventListener("click", () => {
+    item.style.transform="translateY(80px)";
 
-        item.classList.add("click-pop");
+    item.style.transition=".9s ease";
 
-        setTimeout(() => {
-            item.classList.remove("click-pop");
-        },300);
+    revealObserver.observe(item);
+
+});
+
+/*=========================================================
+                COUNTER
+=========================================================*/
+
+const counters=document.querySelectorAll(".counter");
+
+const counterObserver=new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            animateCounter(entry.target);
+
+            counterObserver.unobserve(entry.target);
+
+        }
 
     });
 
 });
 
-// HEADER SHADOW ON SCROLL
+counters.forEach(counter=>{
 
-window.addEventListener("scroll", () => {
-
-    const header = document.querySelector(".header");
-
-    if(window.scrollY > 50){
-
-        header.style.boxShadow =
-        "0 10px 30px rgba(0,0,0,.4)";
-
-    }else{
-
-        header.style.boxShadow = "none";
-
-    }
+    counterObserver.observe(counter);
 
 });
 
-window.addEventListener("scroll",()=>{
+function animateCounter(counter){
 
-const winScroll =
-document.documentElement.scrollTop;
+    const text=counter.innerText;
 
-const height =
-document.documentElement.scrollHeight -
-document.documentElement.clientHeight;
+    const target=parseInt(text.replace(/\D/g,""));
 
-const scrolled =
-(winScroll/height)*100;
+    const suffix=text.replace(/[0-9]/g,"");
 
-document.getElementById("progressBar")
-.style.width = scrolled + "%";
+    let current=0;
 
-});
+    const speed=Math.max(10,Math.floor(target/80));
 
-const glow =
-document.querySelector(".cursor-glow");
+    const timer=setInterval(()=>{
 
-document.addEventListener("mousemove",(e)=>{
+        current+=speed;
 
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
+        if(current>=target){
 
-});
+            current=target;
+
+            clearInterval(timer);
+
+        }
+
+        counter.innerText=current+suffix;
+
+    },20);
+
+}
+
+/*=========================================================
+            FLOATING PARTICLES
+=========================================================*/
+
+const particleContainer=document.createElement("div");
+
+particleContainer.className="particles";
+
+document.body.appendChild(particleContainer);
+
+for(let i=0;i<35;i++){
+
+    const particle=document.createElement("span");
+
+    particle.className="particle";
+
+    particle.style.left=Math.random()*100+"%";
+
+    particle.style.animationDuration=
+
+    (8+Math.random()*12)+"s";
+
+    particle.style.animationDelay=
+
+    Math.random()*10+"s";
+
+    particle.style.opacity=Math.random();
+
+    particleContainer.appendChild(particle);
+
+}
